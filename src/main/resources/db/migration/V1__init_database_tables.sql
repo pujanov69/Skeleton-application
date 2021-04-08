@@ -39,3 +39,16 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 
 INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUES
 	(1, 1, 1);
+	
+	
+CREATE TABLE IF NOT EXISTS `property` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`type` VARCHAR(100) NOT NULL,
+	`name` VARCHAR(100) NOT NULL,
+	`address` VARCHAR(150) NOT NULL,
+	`owner_name` VARCHAR(60) NOT NULL,
+	`construction_year` INT(11) NOT NULL,
+	`on_sale` bit(1) DEFAULT b'0',
+	`approved` bit(1) DEFAULT b'0',
+	PRIMARY KEY (`id`)
+);	
