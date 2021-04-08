@@ -9,6 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * 
  * @author Pujan KC <pujanov69@gmail.com>
@@ -19,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		SecurityAutoConfiguration.class
 })
 @ComponentScan("com.pujanov")
+@EnableSwagger2
 public class SkeletonApplication {
 
 	public static void main(String[] args) {
@@ -34,4 +40,10 @@ public class SkeletonApplication {
 	ObjectMapper objectMapperBean() {
 		return new ObjectMapper();
 	}
+	
+	 @Bean
+	 	   public Docket productApi() {
+	 	      return new Docket(DocumentationType.SWAGGER_2).select()
+	 	         .apis(RequestHandlerSelectors.basePackage("com.pujanov.resources")).build();
+	 	   }
 }
