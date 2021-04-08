@@ -53,4 +53,15 @@ public class PropertyController {
 	public void deleteProperty(@PathVariable("id") int id) throws CustomSqlException{
 		propertyService.deleteProperty(id);
 	}
+	
+	@PutMapping("/approveProperty/{id}")
+	public void approveProperty(@PathVariable("id") int id) throws CustomSqlException {
+		propertyService.approveProperty(id);
+	}
+	
+	@GetMapping("search/{searchkey}")
+	public ResponseDTO<List<PropertyDTO>> getSearchResults(@PathVariable("searchkey") String searchKey) throws CustomSqlException {
+		return new ResponseDTO<List<PropertyDTO>> (propertyService.getSearchedResults(searchKey));
+	}
+	
 }

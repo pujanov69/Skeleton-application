@@ -28,12 +28,18 @@ public interface PropertyDAO {
 	@GetGeneratedKeys
 	public int addProperty(@BindBean PropertyDTO propertyDTO);
 	
-	@SqlUpdate("UPDATE property SET type= :type, name = :name , address = :address, owner_name = :ownerName , construction_year= :constructionYear, on_sale = :onSale, approved = :approved WHERE id = :cityId")
-	public void updateCity(@Bind("cityId") int id, @BindBean PropertyDTO cityDTO);
+	@SqlUpdate("UPDATE property SET type= :type, name = :name , address = :address, owner_name = :ownerName , construction_year= :constructionYear, on_sale = :onSale, approved = :approved WHERE id = :propertyId")
+	public void updateProperty(@Bind("propertyId") int id, @BindBean PropertyDTO propertyDTO);
 	
 	@SqlUpdate("DELETE FROM property WHERE id = :propertyId")
-	public void deleteCityById(@Bind("propertyId") int id);
+	public void deletePropertyById(@Bind("propertyId") int id);
+
+	@SqlUpdate("UPDATE property SET approved = true WHERE id = :propertyId")
+	public void approveProperty(@Bind("propertyId") int id);
 	
+	@SqlQuery("SELECT * FROM property WHERE name LIKE CONCAT('%', :searchKey, '%') OR owner_name LIKE CONCAT('%', :searchKey, '%')")
+	@RegisterBeanMapper(PropertyDTO.class)
+	public List<PropertyDTO> searchProperty(@Bind("searchKey") String searchKey);
 	
 	
 }

@@ -25,39 +25,55 @@ public class PropertyServiceImpl implements PropertyService{
 	@Override
 	public List<PropertyDTO> getAllProperty() {
 		// TODO Auto-generated method stub
-		PropertyDAO cityDao = dbService.getDao(PropertyDAO.class);
-		return cityDao.getAllProperty();
+		PropertyDAO propertyDao = dbService.getDao(PropertyDAO.class);
+		return propertyDao.getAllProperty();
 	}
 
 	@Override
 	public PropertyDTO getAPropertyById(int id) {
 		// TODO Auto-generated method stub
-		PropertyDAO cityDao = dbService.getDao(PropertyDAO.class);
-		return cityDao.getPropertyById(id);
+		PropertyDAO propertyDao = dbService.getDao(PropertyDAO.class);
+		return propertyDao.getPropertyById(id);
 	}
 
 	
 	@Override
-	public int addProperty(PropertyDTO cityDTO) {
+	public int addProperty(PropertyDTO propertyDTO) {
 		// TODO Auto-generated method stub
-		PropertyDAO cityDao = dbService.getDao(PropertyDAO.class);
-		return cityDao.addProperty(cityDTO);
+		PropertyDAO propertyDao = dbService.getDao(PropertyDAO.class);
+		return propertyDao.addProperty(propertyDTO);
 	}
 
 	@Override
-	public void updateProperty(int id, PropertyDTO cityDTO) {
-		PropertyDAO cityDao = dbService.getDao(PropertyDAO.class);
+	public void updateProperty(int id, PropertyDTO propertyDTO) {
+		PropertyDAO propertyDao = dbService.getDao(PropertyDAO.class);
 		// TODO Auto-generated method stub
-		cityDao.updateCity(id, cityDTO);
+		propertyDao.updateProperty(id, propertyDTO);
 		
 	}
 
 	@Override
 	public void deleteProperty(int id) {
 		// TODO Auto-generated method stub
-		PropertyDAO cityDao = dbService.getDao(PropertyDAO.class);
-		cityDao.deleteCityById(id);
+		PropertyDAO propertyDao = dbService.getDao(PropertyDAO.class);
+		propertyDao.deletePropertyById(id);
 		
+	}
+
+
+	@Override
+	public void approveProperty(int id) {
+		// TODO Auto-generated method stub
+		PropertyDAO propertyDao = dbService.getDao(PropertyDAO.class);
+		propertyDao.approveProperty(id);
+		
+	}
+
+
+	@Override
+	public List<PropertyDTO> getSearchedResults(String searchKey) {
+		PropertyDAO propertyDao = dbService.getDao(PropertyDAO.class);
+		return propertyDao.searchProperty(searchKey);
 	}
 
 }

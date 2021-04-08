@@ -17,5 +17,9 @@ public interface PropertyService {
 	public void updateProperty(int id, PropertyDTO cityDTO);
 	
 	public void deleteProperty(int id);
+
+	public void approveProperty(int id);
+
+	public List<PropertyDTO> getSearchedResults(String searchKey);
 	
 }
